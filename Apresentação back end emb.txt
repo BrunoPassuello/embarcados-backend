@@ -1,0 +1,75 @@
+ORDEM DE INICIALIZAÇÃO:
+
+Cadastro de Usuários - cd cadastro-usuarios-service && node cadastro-usuarios-service.js
+Cadastro de Ingressos - cd controle-ingressos-service && node controle-ingressos-service.js
+Cadastro de Atrações - cd cadastro-atracoes-service && node cadastro-atracoes-service.js
+Controle de FIlas - cd controle-filas-service && node controle-filas-service.js
+Estimador de Espera - cd estimador-espera-service && node estimador-espera-service.js
+API Gateway - cd api-gateway && node api-gateway.js
+
+
+* Criar usuario
+POST http://localhost:8000/usuarios
+{
+  "nome": "Bruno Passuello",
+  "email": "bruno@email.com",
+  "telefone": "48999999999"
+}
+
+* Criar atrações
+POST http://localhost:8000/atracoes
+{
+  "nome": "Montanha Russa",
+  "capacidade": 20,
+  "tempo_permanencia": 5
+}
+
+{
+  "nome": "Roda Gigante",
+  "capacidade": 30,
+  "tempo_permanencia": 10
+}
+
+* Compra de ingresso: 
+POST http://localhost:8000/ingressos
+{
+  "usuario_id": 1
+}
+
+
+NÃO APAGAR DB DE INGRESSOS!!!!!!!!
+
+NÃO APAGAR DB DE INGRESSOS!!!!!!!!
+
+* Validar ingresso -> Catraca 
+POST http://localhost:8000/ingressos/validar
+{
+  "ingresso_id": Usar id de ingresso recem comprado
+}
+
+* Inicializar filas 
+POST http://localhost:8000/filas/inicializar/1
+
+POST http://localhost:8000/filas/inicializar/2
+
+* Entradas na fila da atração 1
+POST http://localhost:8000/filas/entrada/1
+
+* Estimativa de espera da atração 1 -> Cálculo:
+
+ciclos = pessoas na fila / capacidade da atração 
+Tempo de espera = ciclos * tempo de permanencia de uma pessoa na atração
+
+GET http://localhost:8000/estimativa/1
+
+* Estimativa de espera de todas atrações
+GET http://localhost:8000/estimativa
+
+
+
+
+
+
+
+
+
